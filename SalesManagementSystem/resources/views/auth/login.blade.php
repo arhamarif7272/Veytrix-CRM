@@ -91,7 +91,7 @@
     </form>
 
     <!-- Demo credentials hint -->
-    <div class="demo-credentials mt-4">
+    <!-- <div class="demo-credentials mt-4">
         <div class="d-flex align-items-center justify-content-between mb-2">
             <span class="text-muted small fw-bold text-uppercase"><i class="fas fa-key text-warning me-1"></i> Quick Demo Login</span>
             <small class="text-muted">Click to instant sign-in</small>
@@ -113,7 +113,7 @@
                 <i class="fas fa-user-tie text-danger"></i> Customer Portal (Alex Mercer)
             </button>
         </div>
-    </div>
+    </div> -->
 </div>
 @endsection
 
