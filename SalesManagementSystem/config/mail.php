@@ -38,14 +38,14 @@ return [
     'mailers' => [
 
         'smtp' => [
-            'transport' => 'smtp',
-            'scheme' => env('MAIL_SCHEME'),
-            'url' => env('MAIL_URL'),
-            'host' => env('MAIL_HOST', '127.0.0.1'),
-            'port' => env('MAIL_PORT', 2525),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
+            'transport'   => 'smtp',
+            'scheme'      => env('MAIL_SCHEME', 'tls'),
+            'url'         => env('MAIL_URL'),
+            'host'        => env('MAIL_HOST', 'smtp-relay.brevo.com'),
+            'port'        => (int) env('MAIL_PORT', 2525),
+            'username'    => env('MAIL_USERNAME'),
+            'password'    => env('MAIL_PASSWORD'),
+            'timeout'     => 30,
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 
@@ -65,9 +65,7 @@ return [
             'transport' => 'resend',
         ],
 
-        'brevo' => [
-            'transport' => 'brevo',
-        ],
+        // Brevo SMTP is handled via the 'smtp' transport above (port 2525, not blocked by Render Free)
 
         'sendmail' => [
             'transport' => 'sendmail',

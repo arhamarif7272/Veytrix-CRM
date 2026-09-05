@@ -28,11 +28,6 @@ class AppServiceProvider extends ServiceProvider
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
 
-        // Register Brevo HTTPS API Mail Transport (bypasses Render Free SMTP port 587 block over HTTPS port 443)
-        \Illuminate\Support\Facades\Mail::extend('brevo', function (array $config = []) {
-            return new \App\Services\BrevoTransport();
-        });
-
         // Custom Password Reset Email with embedded Veytrix circular logo
         \Illuminate\Auth\Notifications\ResetPassword::toMailUsing(function ($notifiable, $token) {
             $resetUrl = url(route('password.reset', [

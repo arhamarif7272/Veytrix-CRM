@@ -42,15 +42,19 @@ services:
       - key: BROADCAST_CONNECTION
         value: log
 
-      # Email: Brevo HTTPS REST API (bypasses Render Free SMTP port 587 block over HTTPS port 443)
+      # Email: Brevo SMTP on port 2525 (NOT blocked by Render Free — only 25, 465, 587 are blocked)
       - key: MAIL_MAILER
-        value: brevo
-      - key: BREVO_API_KEY
-        sync: false # Paste your Brevo API key in Render Dashboard
-      - key: BREVO_FROM_EMAIL
+        value: smtp
+      - key: MAIL_HOST
+        value: smtp-relay.brevo.com
+      - key: MAIL_PORT
+        value: "2525"
+      - key: MAIL_SCHEME
+        value: tls
+      - key: MAIL_USERNAME
         value: arhamarifali722@gmail.com
-      - key: BREVO_FROM_NAME
-        value: "Veytrix"
+      - key: MAIL_PASSWORD
+        sync: false # Paste your Brevo SMTP API key from: Brevo Dashboard → Settings → SMTP & API
       - key: MAIL_FROM_ADDRESS
         value: arhamarifali722@gmail.com
       - key: MAIL_FROM_NAME
