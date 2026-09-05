@@ -19,6 +19,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Enforce HTTPS scheme in production or when behind SSL proxy (e.g. Render)
+        if (
+            $this->app->environment('production') ||
+            request()->header('x-forwarded-proto') === 'https' ||
+            str_starts_with((string) config('app.url'), 'https://')
+        ) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         // Register Brevo HTTPS API Mail Transport (bypasses Render Free SMTP port 587 block over HTTPS port 443)
         \Illuminate\Support\Facades\Mail::extend('brevo', function (array $config = []) {
             return new \App\Services\BrevoTransport();

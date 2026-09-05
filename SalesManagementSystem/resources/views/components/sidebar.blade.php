@@ -63,8 +63,8 @@
     <!-- Brand Header -->
     <div class="sidebar-brand">
         <a href="{{ route('dashboard') }}" class="d-flex align-items-center gap-2 text-decoration-none" title="Veytrix — Enterprise Customer Relationship & Workflow Management System">
-            <div class="sidebar-logo-circle">
-                <img src="{{ asset('images/logo.png') }}" alt="Veytrix" class="sidebar-logo-img">
+            <div class="sidebar-logo-circle" style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <img src="{{ asset('images/logo.png') }}" alt="Veytrix" class="sidebar-logo-img" width="34" height="34" style="width: 34px; height: 34px; max-width: 34px; max-height: 34px; object-fit: contain; border-radius: 50%; display: block;">
             </div>
             <div class="sidebar-brand-text">
                 <span class="brand-name">Veytrix</span>
