@@ -19,13 +19,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Enforce HTTPS scheme in production or when behind SSL proxy (e.g. Render)
+        // Enforce HTTPS for ALL URL helpers (url, route, asset) behind Render's SSL proxy
+        $appUrl = (string) config('app.url');
         if (
             $this->app->environment('production') ||
             request()->header('x-forwarded-proto') === 'https' ||
-            str_starts_with((string) config('app.url'), 'https://')
+            str_starts_with($appUrl, 'https://')
         ) {
             \Illuminate\Support\Facades\URL::forceScheme('https');
+            // forceRootUrl is required to fix asset() — forceScheme alone does NOT affect asset()
+            \Illuminate\Support\Facades\URL::forceRootUrl($appUrl ?: 'https://veytrix-crm.onrender.com');
         }
 
         // Custom Password Reset Email with embedded Veytrix circular logo
