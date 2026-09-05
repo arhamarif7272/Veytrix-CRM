@@ -1,6 +1,6 @@
 @php
     $user = auth()->user();
-    $currentRoute = request()->route()->getName();
+    $currentRoute = request()->route() ? request()->route()->getName() : null;
 
     $navGroups = [
         [
@@ -81,7 +81,7 @@
         @foreach($navGroups as $group)
             @php
                 $visibleItems = collect($group['items'])->filter(function($item) use ($user) {
-                    return $item['roles'] === null || in_array($user->role, $item['roles']);
+                    return $item['roles'] === null || ($user && in_array($user->role, $item['roles']));
                 });
             @endphp
 
